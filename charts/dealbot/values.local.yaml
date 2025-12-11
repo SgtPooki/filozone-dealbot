@@ -1,0 +1,44 @@
+# Local Kind/minikube defaults - NOT for production use.
+# Uses bundled PostgreSQL with default credentials for convenience.
+# For external DB: override DATABASE_* env vars in values.local.override.yaml
+# and set DATABASE_PASSWORD in .env (will be added to Kubernetes secret).
+image:
+  repository: dealbot-local
+  tag: dev
+  pullPolicy: IfNotPresent
+
+service:
+  type: NodePort
+  port: 3130
+  targetPort: 3130
+  nodePort: 30081
+
+env:
+  NODE_ENV: production
+  DEALBOT_HOST: 0.0.0.0
+  DEALBOT_PORT: "3130"
+  DATABASE_HOST: dealbot-postgres
+  DATABASE_PORT: "5432"
+  DATABASE_USER: dealbot
+  DATABASE_NAME: filecoin_dealbot
+  DATABASE_PASSWORD: dealbot_password
+  NETWORK: calibration
+  DEAL_INTERVAL_SECONDS: "300"
+  RETRIEVAL_INTERVAL_SECONDS: "600"
+  DEAL_START_OFFSET_SECONDS: "0"
+  RETRIEVAL_START_OFFSET_SECONDS: "300"
+  METRICS_START_OFFSET_SECONDS: "600"
+
+secretEnv: {}
+
+ingress:
+  enabled: false
+
+postgresql:
+  enabled: true
+  auth:
+    username: dealbot
+    password: dealbot_password
+    database: filecoin_dealbot
+  persistence:
+    enabled: false

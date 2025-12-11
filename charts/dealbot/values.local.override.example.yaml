@@ -1,0 +1,10 @@
+# Copy this file to values.local.override.yaml (gitignored) and customize as needed.
+# Secrets should live in Kubernetes (e.g., created via `make secret`), then
+# referenced here via existingSecret.
+
+existingSecret: dealbot-secrets
+
+# Optionally override or add env values for local runs.
+# env:
+#   WALLET_ADDRESS: "your-wallet-address"
+#   OTHER_VAR: "value"

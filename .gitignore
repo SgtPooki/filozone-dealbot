@@ -57,3 +57,7 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 # Datasets
 /datasets
+
+# Local Helm/Kubernetes artifacts
+charts/dealbot/values.local.override.yaml
+.kube
